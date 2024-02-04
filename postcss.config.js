@@ -1,10 +1,6 @@
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-<<<<<<< HEAD
-}
-=======
+	plugins: {
+		tailwindcss: {},
+		autoprefixer: {},
+	},
 };
->>>>>>> 4f4ef60 (header)
