@@ -28,6 +28,7 @@ const Header = () => {
 					alt={'logo'}
 					width={56}
 					height={56}
+					priority
 					className='cursor-pointer object-contain'
 				/>
 
