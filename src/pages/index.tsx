@@ -5,8 +5,6 @@ import { IMovie } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 
 export default function Home({ trending }: HomeProps): JSX.Element {
-
-	console.log(API_REQUEST)
 	return (
 		<div className='relative h-[200vh]'>
 			<Head>
@@ -16,7 +14,7 @@ export default function Home({ trending }: HomeProps): JSX.Element {
 				<link rel='icon' href='/logo.svg' />
 			</Head>
 			<Header />
-			<main>
+			<main className='relative pl-4 pb-24 lg:space-y-24 lg:pl-16'>
 				<Hero trending={trending} />
 				<section>
 					{/* Row */}
@@ -31,6 +29,7 @@ export default function Home({ trending }: HomeProps): JSX.Element {
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 	const trending = await fetch(API_REQUEST.trending).then(res => res.json());
+
 	return {
 		props: {
 			trending: trending.results,
