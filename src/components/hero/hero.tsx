@@ -15,23 +15,23 @@ const Hero = ({ trending }: HeroProps): JSX.Element => {
 	}, [trending]);
 
 	return (
-		<div className='flex flex-col space-y-2 py-16 md:space-y-4 lg:h-[65vh] lg:pb-12 lg:justify-center'>
-			<div className='absolute top-0 -z-10 left-0 h-[95vh] w-full'>
+		<div className='flex flex-col space-y-2 py-20 md:space-y-4 lg:h-[65vh] lg:pb-12 lg:justify-end'>
+			<div className='absolute top-0 left-0 -z-10 h-[95vh] w-full'>
 				<Image
 					src={`${image_base}${movie?.backdrop_path || movie?.poster_path}`}
-					alt={movie?.title || movie?.name || movie?.original_name}
+					alt='Movie Image'
 					fill
-					priority
 					className='object-cover'
+					priority
 				/>
 			</div>
 
-			<div className='py-[4px] px-[8px] rounded-bl-[8px] text-center rounded-tr-[8px] bg-[#1d1d1d]/50 w-[111px]'>
+			<div className='py-[4px] px-[8px] text-center rounded-bl-[8px] rounded-tr-[8px] bg-[#e5e5e5]/50 w-[111px]'>
 				{movie.media_type}
 			</div>
 
 			<div className='flex items-center space-x-2'>
-				<ReactStars edit={false} count={10} value={movie.vote_average} size={25} color2={'#fff'} />
+				<ReactStars edit={false} count={10} value={movie.vote_average} color2={'#fff'} />
 				<p>({movie.vote_count})</p>
 			</div>
 
@@ -39,11 +39,11 @@ const Hero = ({ trending }: HeroProps): JSX.Element => {
 				{movie?.title || movie?.name || movie?.original_name}
 			</h1>
 			<p className='max-w-xs md:max-w-lg lg:max-w-2xl text-xs text-shadow-md md:text-lg lg:text-2xl'>
-				{movie?.overview?.slice(0, 100)}...
+				{movie?.overview}
 			</p>
 
 			<div>
-				<button className='flex justify-center items-center space-x-2 bg-white/60 font-bold text-black w-[200px] h-[56px] rounded-full'>
+				<button className='flex justify-center items-center space-x-2 bg-white/40 font-bold text-black w-[200px] h-[56px] rounded-full'>
 					<TbPlayerPlay className='h-5 w-5 md:h8 md:w-8' /> Watch now
 				</button>
 			</div>

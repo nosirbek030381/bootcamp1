@@ -25,7 +25,7 @@ const Header = () => {
 			<div className='flex items-center space-x-2 md:space-x-10'>
 				<Image
 					src={'/logo.svg'}
-					alt={'Logo'}
+					alt='Image logo'
 					width={56}
 					height={56}
 					priority
