@@ -39,7 +39,7 @@ const Hero = ({ trending }: HeroProps): JSX.Element => {
 				{movie?.title || movie?.name || movie?.original_name}
 			</h1>
 			<p className='max-w-xs md:max-w-lg lg:max-w-2xl text-xs text-shadow-md md:text-lg lg:text-2xl'>
-				{movie?.overview}
+				{movie?.overview?.slice(0, 100)}...
 			</p>
 
 			<div>
