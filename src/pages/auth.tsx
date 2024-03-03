@@ -1,6 +1,7 @@
 import { Form, Formik } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { TextField } from 'src/components';
 import { AuthContext } from 'src/context/auth.context';
@@ -8,7 +9,13 @@ import * as Yup from 'yup';
 
 const Auth = () => {
 	const [auth, setAuth] = useState<'signup' | 'signin'>('signin');
-	const { error, isLoading, signUp, signIn, logout } = useContext(AuthContext);
+	const { error, isLoading, signUp, signIn, logout, user } = useContext(AuthContext);
+	const router = useRouter();
+
+	if (user) {
+		router.push('/');
+	}
+	if (isLoading) return <>Loading...</>;
 
 	const toggleAuth = (state: 'signup' | 'signin') => {
 		setAuth(state);

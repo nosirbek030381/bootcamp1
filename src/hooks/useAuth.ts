@@ -11,7 +11,7 @@ import { auth } from 'src/firebase';
 export const useAuth = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [user, setUser] = useState<User | null>(null);
-	const [error, setError] = useState<string | null>(null);
+	const [error, setError] = useState<string | null>('');
 
 	const router = useRouter();
 
@@ -45,14 +45,10 @@ export const useAuth = () => {
 		setIsLoading(true);
 
 		await signOut(auth)
-			.then(() => {
-				setUser(null);
-				router.push('/');
-				setIsLoading(true);
-			})
+			.then(() => setUser(null))
 			.catch(error => setError(error.message))
 			.finally(() => setIsLoading(false));
 	};
 
-	return { isLoading, user, error, signUp, signIn, logout };
+	return { isLoading, user, error, signUp, signIn, logout, setUser, setIsLoading };
 };
