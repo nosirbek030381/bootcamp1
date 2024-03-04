@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useContext } from 'react';
 import { Header, Hero, Modal, Row, Subscription } from 'src/components';
 import { AuthContext } from 'src/context/auth.context';
-import { IMovie } from 'src/interfaces/app.interface';
+import { IMovie, Product } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 import { useInfoStore } from 'src/store';
 
@@ -16,13 +16,14 @@ export default function Home({
 	comedy,
 	family,
 	history,
+	products,
 }: HomeProps): JSX.Element {
 	const { setModal, modal } = useInfoStore();
 	const { isLoading } = useContext(AuthContext);
 	const subscription = false;
 
 	if (isLoading) return <>Loading...</>;
-	if (!subscription) return <Subscription />;
+	if (!subscription) return <Subscription products={products} />;
 
 	return (
 		<div className='relative min-h-screen '>
@@ -51,7 +52,7 @@ export default function Home({
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-	const [trending, topRated, tvTopRated, popular, documentary, comedy, family, history] =
+	const [trending, topRated, tvTopRated, popular, documentary, comedy, family, history, products] =
 		await Promise.all([
 			fetch(API_REQUEST.trending).then(res => res.json()),
 			fetch(API_REQUEST.top_rated).then(res => res.json()),
@@ -61,6 +62,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 			fetch(API_REQUEST.comedy).then(res => res.json()),
 			fetch(API_REQUEST.family).then(res => res.json()),
 			fetch(API_REQUEST.history).then(res => res.json()),
+			fetch(API_REQUEST.products_list).then(res => res.json()),
 		]);
 
 	return {
@@ -73,6 +75,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
 			comedy: comedy.results,
 			family: family.results,
 			history: history.results,
+			products: products.products.data,
 		},
 	};
 };
@@ -86,4 +89,5 @@ interface HomeProps {
 	comedy: IMovie[];
 	family: IMovie[];
 	history: IMovie[];
+	products: Product[];
 }
