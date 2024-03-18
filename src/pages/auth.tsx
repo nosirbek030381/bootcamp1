@@ -2,27 +2,33 @@ import { Form, Formik } from 'formik';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { TextField } from 'src/components';
-import { AuthContext } from 'src/context/auth.context';
+import { useAuth } from 'src/hooks/useAuth';
 import * as Yup from 'yup';
 
 const Auth = () => {
 	const [auth, setAuth] = useState<'signup' | 'signin'>('signin');
-	const { error, isLoading, signUp, signIn, logout, user } = useContext(AuthContext);
+	const { error, isLoading, signUp, signIn, logout, user, setIsLoading } = useAuth();
 	const router = useRouter();
 
 	if (user) {
 		router.push('/');
 	}
-	if (!isLoading) return <>Loading...</>;
 
 	const toggleAuth = (state: 'signup' | 'signin') => {
 		setAuth(state);
 	};
 
-	const onSubmit = (formData: { email: string; password: string }) => {
+	const onSubmit = async (formData: { email: string; password: string }) => {
 		if (auth === 'signup') {
+			setIsLoading(true);
+			const res = await fetch('/api/customer', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email: formData.email }),
+			});
+			await res.json();
 			signUp(formData.email, formData.password);
 		} else {
 			signIn(formData.email, formData.password);
