@@ -12,7 +12,7 @@ const PlanCard = ({ product }: PlanCardProps) => {
 		setIsLoading(true);
 		const payload = { email: user?.email, priceId };
 		try {
-			const response = await fetch('/api/subs', {
+			const response = await fetch('/api/subscription', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(payload),

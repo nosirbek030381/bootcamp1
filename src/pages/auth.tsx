@@ -22,13 +22,6 @@ const Auth = () => {
 
 	const onSubmit = async (formData: { email: string; password: string }) => {
 		if (auth === 'signup') {
-			setIsLoading(true);
-			const res = await fetch('/api/customer', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email: formData.email }),
-			});
-			await res.json();
 			signUp(formData.email, formData.password);
 		} else {
 			signIn(formData.email, formData.password);
