@@ -14,7 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 			expand: ['data.default_price'],
 		});
 		return res.status(200).json({ products });
-	} else if (method === 'POST') {
 	} else {
 		return res.status(400).json({ message: 'Method Not Allowed' });
 	}
