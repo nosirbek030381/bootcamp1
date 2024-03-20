@@ -22,7 +22,6 @@ export default function Home({
 	const { setModal, modal } = useInfoStore();
 	const { isLoading } = useContext(AuthContext);
 
-	if (isLoading) return <>Loading...</>;
 	if (!subscription.length) return <Subscription products={products} />;
 
 	return (
@@ -53,6 +52,16 @@ export default function Home({
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async ({ req }) => {
 	const user_id = req.cookies.user_id;
+
+	if (!user_id) {
+		return {
+			redirect: {
+				destination: '/auth',
+				permanent: false,
+			},
+		};
+	}
+
 	const [
 		trending,
 		topRated,
