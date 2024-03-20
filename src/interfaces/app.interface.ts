@@ -34,3 +34,24 @@ export interface Product {
 	};
 	name: string;
 }
+
+export interface IPlan {
+	id: string;
+	current_period_start: number;
+	current_period_end: number;
+	plan: {
+		amount: true;
+		active: boolean;
+		nickname: string;
+	};
+
+	card: {
+		brand: string;
+		exp_month: number;
+		exp_year: number;
+		last4: null;
+	};
+	customer: {
+		email: string;
+	};
+}

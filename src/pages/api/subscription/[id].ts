@@ -12,7 +12,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const customers = await stripe.customers.list({ limit: 100 });
 		const customer = customers.data.find(c => c.metadata.user_id === id);
 
-		const subscription = await stripe.subscriptions.list({ customer: customer?.id, limit: 1 });
+		const subscription = await stripe.subscriptions.list({
+			customer: customer?.id,
+			limit: 1,
+			expand: ['data.default_payment_method', 'data.customer'],
+		});
 
 		return res.status(200).json({ subscription });
 	}
