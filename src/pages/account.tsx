@@ -6,11 +6,12 @@ import Link from 'next/link';
 import { AiOutlineUser } from 'react-icons/ai';
 import { MdSubscriptions } from 'react-icons/md';
 import { Membership } from 'src/components';
+import { useAuth } from 'src/hooks/useAuth';
 import { IPlan } from 'src/interfaces/app.interface';
 import { API_REQUEST } from 'src/services/api.service';
 
 const Account = ({ subscription }: AccountProps) => {
-	console.log(subscription);
+	const { logout } = useAuth();
 
 	return (
 		<>
@@ -64,7 +65,10 @@ const Account = ({ subscription }: AccountProps) => {
 
 				<div className='mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:pb-0'>
 					<h4 className='text-lg text-[gray]'>Settings</h4>
-					<p className='cursor-pointer col-span-3 text-blue-600 hover:underline md:text-right'>
+					<p
+						className='cursor-pointer col-span-3 text-blue-600 hover:underline md:text-right'
+						onClick={logout}
+					>
 						Sign out of all devices
 					</p>
 				</div>
