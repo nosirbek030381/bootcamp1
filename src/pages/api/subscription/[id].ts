@@ -15,7 +15,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const subscription = await stripe.subscriptions.list({
 			customer: customer?.id,
 			limit: 1,
-			expand: ['data.default_payment_method', 'data.customer'],
+			expand: [
+				'data.default_payment_method',
+				'data.customer',
+				'data.customer.invoice_settings.default_payment_method',
+			],
 		});
 
 		return res.status(200).json({ subscription });

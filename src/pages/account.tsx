@@ -91,6 +91,15 @@ export const getServerSideProps: GetServerSideProps<AccountProps> = async ({ req
 		res.json()
 	);
 
+	if (!subscription.subscription.data.length) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
+
 	return {
 		props: {
 			subscription: subscription.subscription.data[0],
