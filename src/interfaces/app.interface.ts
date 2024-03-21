@@ -70,3 +70,8 @@ export interface IPlan {
 		};
 	};
 }
+
+export interface MyList {
+	userId: string;
+	product: IMovie;
+}

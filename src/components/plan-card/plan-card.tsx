@@ -18,7 +18,6 @@ const PlanCard = ({ product }: PlanCardProps) => {
 				body: JSON.stringify(payload),
 			});
 			const data = await response.json();
-			console.log(data);
 			window.open(data.subscription.url);
 			setIsLoading(false);
 		} catch (error) {
