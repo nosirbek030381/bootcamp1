@@ -13,6 +13,7 @@
 		"@emotion/styled": "^11.10.5",
 		"@mui/material": "^5.11.8",
 		"@next/font": "13.1.6",
+		"@vercel/speed-insights": "^1.0.10",
 		"firebase": "^9.17.1",
 		"formik": "^2.2.9",
 		"js-cookie": "^3.0.1",
