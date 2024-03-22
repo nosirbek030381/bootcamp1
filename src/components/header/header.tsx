@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineLogout, AiOutlineSearch, AiOutlineUser } from 'react-icons/ai';
 import { BiBellMinus } from 'react-icons/bi';
 import { useAuth } from 'src/hooks/useAuth';
+import NavMenu from '../nav-menu/nav-menu';
 
 const Header = () => {
 	const [scrolled, setScrolled] = useState(false);
@@ -34,7 +35,9 @@ const Header = () => {
 					className='cursor-pointer object-contain'
 				/>
 
-				<ul className='md:flex hidden space-x-4 '>
+				<NavMenu />
+
+				<ul className='md:flex hidden space-x-4'>
 					<li className='navLink'>Home</li>
 					<li className='navLink'>Movies</li>
 					<li className='navLink'>TV Shows</li>
