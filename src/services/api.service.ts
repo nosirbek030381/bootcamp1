@@ -1,6 +1,6 @@
 const base_url = process.env.NEXT_PUBLIC_API_URL as string;
 const api_key = process.env.NEXT_PUBLIC_API_KEY as string;
-const public_domain = process.env.NEXT_PUBLIC_DOMAIN!;
+const public_domain = process.env.NEXT_PUBLIC_VERCEL_URL!;
 
 export const API_REQUEST = {
 	trending: `${base_url}/trending/all/week?api_key=${api_key}&language=en-US`,

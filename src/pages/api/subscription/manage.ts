@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 			const portal = await stripe.billingPortal.sessions.create({
 				customer: customer.id,
-				return_url: `${process.env.NEXT_PUBLIC_DOMAIN}/account`,
+				return_url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/account`,
 			});
 
 			return res.status(200).json({ portal: portal.url });

@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	if (method === 'POST') {
 		try {
-			const public_url = process.env.NEXT_PUBLIC_DOMAIN as string;
+			const public_url = process.env.NEXT_PUBLIC_VERCEL_URL as string;
 			const { email, priceId } = req.body;
 			const customers = await stripe.customers.list({ limit: 100 });
 
